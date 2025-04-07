@@ -1,0 +1,14 @@
+# === Laravel backend (Backend-api/) ===
+Backend-api/vendor
+Backend-api/node_modules
+Backend-api/storage/*.key
+Backend-api/storage/app/public
+Backend-api/storage/framework/cache/data
+Backend-api/storage/framework/sessions
+Backend-api/storage/framework/views
+Backend-api/storage/logs
+Backend-api/public/storage
+Backend-api/public/hot
+Backend-api/.env
+Backend-api/.env.*
+Backend-api/.phpunit.result.cache
