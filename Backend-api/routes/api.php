@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\V1\{AuthController};
-use App\Http\Controllers\API\V1\Industry\{IndustryController};
+use App\Http\Controllers\API\V1\Grade\GradeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,8 @@ Route::prefix('v1')->group(function () {
     // Protected routes with JWT authentication
     Route::middleware('jwt.auth')->group(function () {
 
-        Route::get('/get_industries', [IndustryController::class, 'getIndustries']);
+        Route::get('/students', [GradeController::class, 'getStudentList']);
+        Route::get('/students/grades', [GradeController::class, 'getStudentAverages']);
 
     });
 

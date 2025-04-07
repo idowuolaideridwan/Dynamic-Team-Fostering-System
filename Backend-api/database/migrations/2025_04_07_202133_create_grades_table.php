@@ -9,8 +9,8 @@ return new class extends Migration {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
-            $table->foreignId('module_id')->constrained()->onDelete('cascade');
-            $table->float('grade'); // e.g., 75.5
+            $table->foreignId('module_id')->constrained()->index()->onDelete('cascade');
+            $table->float('grade'); 
             $table->text('comments')->nullable();
             $table->dateTime('graded_at')->nullable();
             $table->timestamps();
