@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
 use App\Services\API\V1\Contracts\Grade\GradeServiceInterface;
+use App\Http\Requests\API\V1\GradeRequest\GetStudentAveragesRequest;
 
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -123,19 +124,20 @@ class GradeController extends Controller
  */
 
 
-    public function getStudentAverages(Request $request)
+    public function getStudentAverages(GetStudentAveragesRequest $request)
     {
         try {
-            $students = $this->gradeService->getStudentAverages(
-                $request->query('students', []),
-                $request->boolean('summary_only', false)
-            );
+            
+            $students = $request->input('students', []);
+            $summaryOnly = $request->boolean('summary_only', false);
+
+            $result = $this->gradeService->getStudentAverages($students, $summaryOnly);
 
             return response()->json([
                 'status' => 'success',
                 'message' => 'Student averages retrieved successfully',
-                'data' => $students
-            ]);
+                'data' => $result
+            ], Helper::MSG_SUCCESS);
         } catch (\Throwable $e) {
             Log::error('Grade average fetch error: ' . $e->getMessage());
 
@@ -143,7 +145,7 @@ class GradeController extends Controller
                 'status' => 'error',
                 'message' => 'Failed to fetch student averages',
                 'data' => null
-            ], 500);
+            ],  Helper::MSG_INTERNAL_SERVER_ERROR);
         }
     }
 
