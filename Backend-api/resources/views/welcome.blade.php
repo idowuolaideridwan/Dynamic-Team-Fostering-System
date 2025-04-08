@@ -26,8 +26,8 @@
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <img src="https://concentricsolutions.com/images/Concentric-NEW-logo.svg" 
-                         alt="Concentric Solutions Logo" 
+                    <img src="https://teamfostering.co.uk/app/themes/team-fostering/public/images/logos/logo-dark.6508dc.svg" 
+                         alt="Team Fostering Logo" 
                          class="h-16 w-auto sm:h-20">
                 </div>
                

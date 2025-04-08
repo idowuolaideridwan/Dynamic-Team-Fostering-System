@@ -34,60 +34,6 @@ class AuthController extends Controller
         $this->userService = $userService;
     }
 
-    /**
-     * @OA\Post(
-     *     path="/api/v1/register", 
-     *     tags={"Authentication"},
-     *     summary="Register new user",
-     *     description="Register a new user with name, email and password",
-     *     operationId="register",
-     *     @OA\RequestBody(
-     *         required=true,
-     *         description="User registration details",
-     *         @OA\JsonContent(
-     *             required={"name","email","password","password_confirmation"},
-     *             @OA\Property(property="name", type="string", example="John Doe"),
-     *             @OA\Property(property="email", type="string", format="email", example="john@example.com"),
-     *             @OA\Property(property="password", type="string", format="password", example="password123"),
-     *             @OA\Property(property="password_confirmation", type="string", format="password", example="password123")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="User successfully registered",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="success"),
-     *             @OA\Property(property="message", type="string", example="User successfully registered"),
-     *             @OA\Property(
-     *                 property="info",
-     *                 type="object",
-     *                 @OA\Property(
-     *                     property="user",
-     *                     type="object",
-     *                     @OA\Property(property="id", type="integer", example=1),
-     *                     @OA\Property(property="name", type="string", example="John Doe"),
-     *                     @OA\Property(property="email", type="string", example="john@example.com"),
-     *                     @OA\Property(property="created_at", type="string", format="date-time")
-     *                 ),
-     *                 @OA\Property(property="token", type="string", example="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...")
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=422,
-     *         description="Validation error",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="error"),
-     *             @OA\Property(property="message", type="string", example="The given data was invalid."),
-     *             @OA\Property(
-     *                 property="info",
-     *                 type="object",
-     *                 @OA\Property(property="email", type="array", @OA\Items(type="string", example="The email has already been taken."))
-     *             )
-     *         )
-     *     )
-     * )
-     */
     public function register(RegisterRequest $request): JsonResponse
     {
         try 
@@ -224,47 +170,6 @@ class AuthController extends Controller
             return response()->json($response, $statusCode);
     }
 
-    /**
-     * @OA\Post(
-     *     path="/api/v1/forgot-password", 
-     *     tags={"Authentication"},
-     *     summary="Forgot password",
-     *     description="Send password reset link to user's email",
-     *     operationId="forgotPassword",
-     *     @OA\RequestBody(
-     *         required=true,
-     *         description="User email",
-     *         @OA\JsonContent(
-     *             required={"email"},
-     *             @OA\Property(property="email", type="string", format="email", example="john@example.com")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Password reset link sent",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="success"),
-     *             @OA\Property(property="message", type="string", example="Password reset link sent to your email.")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=404,
-     *         description="User not found",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="error"),
-     *             @OA\Property(property="message", type="string", example="User not found.")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=500,
-     *         description="Internal server error",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="error"),
-     *             @OA\Property(property="message", type="string", example="Internal server error.")
-     *         )
-     *     )
-     * )
-     */
     public function forgotPassword(ForgotPasswordRequest $request): JsonResponse
     {
         try {
@@ -290,50 +195,6 @@ class AuthController extends Controller
         }
     }
 
-    /**
-     * @OA\Post(
-     *     path="/api/v1/reset-password",
-     *     tags={"Authentication"},
-     *     summary="Reset user password",
-     *     description="Reset the password for a user",
-     *     operationId="resetPassword",
-     *     @OA\RequestBody(
-     *         required=true,
-     *         description="Password reset details",
-     *         @OA\JsonContent(
-     *             required={"token", "email", "password", "password_confirmation"},
-     *             @OA\Property(property="token", type="string", example="reset_token"),
-     *             @OA\Property(property="email", type="string", format="email", example="john@example.com"),
-     *             @OA\Property(property="password", type="string", format="password", example="new_password123"),
-     *             @OA\Property(property="password_confirmation", type="string", format="password", example="new_password123")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Password reset successfully",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="success"),
-     *             @OA\Property(property="message", type="string", example="Password reset successfully.")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=404,
-     *         description="User not found",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="error"),
-     *             @OA\Property(property="message", type="string", example="User not found.")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=500,
-     *         description="Internal server error",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="error"),
-     *             @OA\Property(property="message", type="string", example="Internal server error.")
-     *         )
-     *     )
-     * )
-     */
     public function resetPassword(ResetPasswordRequest $request): JsonResponse
     {
         try {

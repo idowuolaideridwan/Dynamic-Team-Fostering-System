@@ -1,0 +1,38 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4.0.3/dist/index.global.js"></script>
+</head>
+<body class="bg-gray-900 text-white flex justify-center items-center min-h-screen">
+
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
+        <img src="https://teamfostering.co.uk/app/themes/team-fostering/public/images/logos/logo-dark.6508dc.svg" alt="Team Fostering Logo">
+        <br>
+        <h2 class="text-2xl font-semibold text-center mb-4">Login</h2>
+        <p id="error-message" class="text-red-500 text-center mb-2"></p>
+
+        <form onsubmit="loginUser(event)" class="flex flex-col">
+            <label for="email" class="mb-1">Email:</label>
+            <input type="text" id="email" name="email" required class="p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+            <label for="password" class="mt-4 mb-1">Password:</label>
+            <div class="relative">
+                <input type="password" id="password" name="password" autocomplete="off" required
+                    class="p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full pr-10">
+                <span id="toggle-password" onclick="togglePassword()"
+                    class="absolute inset-y-0 right-2 flex items-center cursor-pointer text-lg">
+                    👁️
+                </span>
+            </div>
+
+            <button type="submit" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded transition duration-300">
+                Login
+            </button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

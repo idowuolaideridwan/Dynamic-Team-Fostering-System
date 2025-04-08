@@ -12,3 +12,5 @@ Backend-api/public/hot
 Backend-api/.env
 Backend-api/.env.*
 Backend-api/.phpunit.result.cache
+# === Python Frontend  ===
+Frontend/venv
