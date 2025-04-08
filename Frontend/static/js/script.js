@@ -42,21 +42,17 @@ async function loginUser(event) {
     document.getElementById(id).classList.remove('hidden');
   }
 
-function fetchAverageResults() {
+  function fetchAverageResults() {
   const input = document.getElementById('studentIdsInput').value.trim();
   const query = input ? '?student_ids=' + encodeURIComponent(input) : '';
   const url = `/landingpage/api/averages${query}`;
 
-  const loader = document.getElementById('avg-loading');
-  const tbody = document.querySelector('#averagesTable tbody');
-
-  loader.classList.remove('hidden');
-  tbody.innerHTML = ''; // optional: clear existing rows
-
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      loader.classList.add('hidden');
+      const tbody = document.querySelector('#averagesTable tbody');
+      tbody.innerHTML = '';
+
       if (data.length === 0) {
         tbody.innerHTML = `<tr><td colspan="2" class="text-center text-gray-400 py-4">No results found</td></tr>`;
       } else {
@@ -71,9 +67,7 @@ function fetchAverageResults() {
       }
     })
     .catch(err => {
-      loader.classList.add('hidden');
       console.error("Error loading averages:", err);
-      tbody.innerHTML = `<tr><td colspan="2" class="text-center text-red-400 py-4">Error fetching results</td></tr>`;
     });
 }
 

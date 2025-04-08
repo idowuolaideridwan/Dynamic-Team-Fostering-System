@@ -45,11 +45,14 @@
 
 <main class="flex-grow p-6 w-full h-full overflow-auto">
 
+    <!-- Average Results Section -->
+    <section id="analyticalDashboard" class="flex flex-col h-full w-full">
+
   <div class="max-w-6xl mx-auto px-4 py-8">
     <h1 class="text-2xl font-bold text-blue-400 mb-6">📊 Student Performance Dashboard</h1>
 
     <!-- Chart Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
 
       <!-- 1. Grade Distribution -->
       <div class="bg-gray-800 p-4 rounded-lg shadow">
@@ -67,43 +70,37 @@
       <div class="bg-gray-800 p-4 rounded-lg shadow col-span-2">
         <h2 class="text-lg font-semibold mb-2">Student Performance Over Modules</h2>
         <select id="studentSelector" class="text-black p-2 mb-2 rounded">
-          <!-- Options populated by JS -->
         </select>
         <canvas id="studentTrend"></canvas>
       </div>
 
       <!-- 4. Gender-Based Averages -->
-      <div class="bg-gray-800 p-4 rounded-lg shadow">
-        <h2 class="text-lg font-semibold mb-2">Gender-Based Insights</h2>
+      <div class="bg-gray-800 p-3 rounded-lg shadow col-span-2">
+        <h2 class="text-lg font-semibold mb-3">Gender-Based Insights</h2>
         <canvas id="genderInsights"></canvas>
       </div>
 
-      <!-- 5. Top Students -->
-      <div class="bg-gray-800 p-4 rounded-lg shadow">
-        <h2 class="text-lg font-semibold mb-2">Top Performing Students</h2>
-        <canvas id="topPerformers"></canvas>
-      </div>
-
-      <!-- 6. Enrollment Trends -->
-      <div class="bg-gray-800 p-4 rounded-lg shadow">
-        <h2 class="text-lg font-semibold mb-2">Enrollment Trends</h2>
-        <canvas id="enrollmentTrends"></canvas>
-      </div>
-
-      <!-- 7. Pass Rate by Module -->
-      <div class="bg-gray-800 p-4 rounded-lg shadow">
-        <h2 class="text-lg font-semibold mb-2">Pass Rate per Module</h2>
+       <!-- 6. Pass Rate by Module -->
+       <div class="bg-gray-800 p-4 rounded-lg shadow col-span-2">
+        <h2 class="text-lg font-semibold mb-3">Pass Rate per Module</h2>
         <canvas id="passRateModule"></canvas>
       </div>
 
+      <!-- 5. Top Students -->
+       <div class="bg-gray-800 p-8 rounded-lg shadow col-span-5">
+        <h2 class="text-lg font-semibold mb-3">Top Performing Students</h2>
+        <canvas id="topPerformers"></canvas>
+      </div>
+
+
+
     </div>
   </div>
-
-  <script src="{{ url_for('static', filename='js/dashboard_charts.js') }}"></script>
+    </section>
 
     <!-- Student List Section -->
 
-    <section id="students" class="flex flex-col h-full w-full hidden">
+    <section id="students" class="hidden">
   <h2 class="text-xl font-semibold mb-4">📋 Student List with Grades</h2>
   <table id="studentsTable" class="display min-w-full bg-gray-800 rounded-lg overflow-auto text-sm">
     <thead class="bg-gray-700 text-left">
@@ -208,7 +205,8 @@
 
   </main>
 
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/dashboard_charts.js') }}"></script>
 
 </body>
 </html>
