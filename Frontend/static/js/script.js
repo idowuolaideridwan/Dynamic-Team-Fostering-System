@@ -47,6 +47,9 @@ async function loginUser(event) {
   const query = input ? '?student_ids=' + encodeURIComponent(input) : '';
   const url = `/landingpage/api/averages${query}`;
 
+  // Show the loading icon
+  document.getElementById('avg-loading').classList.remove('hidden');
+
   fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -68,6 +71,10 @@ async function loginUser(event) {
     })
     .catch(err => {
       console.error("Error loading averages:", err);
+    })
+    .finally(() => {
+      // Always hide the loading icon once done
+      document.getElementById('avg-loading').classList.add('hidden');
     });
 }
 
