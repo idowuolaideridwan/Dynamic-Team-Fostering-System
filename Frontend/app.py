@@ -8,7 +8,10 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 app = Flask(__name__)
-app.secret_key = '1b6809311898523f228a08da74e74ff367cb3d65f89df408b7c7352a5c2917fe'
+
+# generate new secret key
+app.secret_key = ''
+
 
 # Register Blueprints
 app.register_blueprint(auth_bp)
