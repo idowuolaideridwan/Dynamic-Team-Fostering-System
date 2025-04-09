@@ -65,7 +65,7 @@ class UserRegistrationTest extends TestCase
         }
 
         $response->assertStatus(Helper::MSG_CREATED);
-        $response->assertJson(['message' => 'User successfully registered']);
+        $response->assertJson(['message' => 'User information successfully registered']);
         $this->assertDatabaseHas('users', ['email' => 'johndoe@example.com']);
 
         \Log::info('Test completed: user_can_register_successfully');

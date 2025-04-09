@@ -20,8 +20,26 @@ class GradeService implements GradeServiceInterface
     }
 
     public function getStudentAverages(array $studentIds, bool $summaryOnly)
-{
-    return $this->gradeRepo->getStudentAverages($studentIds, $summaryOnly);
-}
+    {
+        return $this->gradeRepo->getStudentAverages($studentIds, $summaryOnly);
+    }
+
+    public function calculateAverageAndClassification(array $grades): array // Used to mock the test
+    {
+        $avg = round(array_sum($grades) / count($grades), 1);
+
+        $classification = match (true) {
+            $avg >= 70 => 'Distinction',
+            $avg >= 60 => 'Merit',
+            $avg >= 40 => 'Pass',
+            default    => 'Fail',
+        };
+
+        return [
+            'average' => $avg,
+            'classification' => $classification,
+        ];
+    }
+
 
 }

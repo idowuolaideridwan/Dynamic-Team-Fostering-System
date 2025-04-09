@@ -18,15 +18,15 @@
         </include>
     </coverage>
     <php>
-        <env name="APP_ENV" value="testing"/>
+        <env name="APP_ENV" value="env.testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="DB_CONNECTION" value="mysql"/>
-        <env name="DB_HOST" value="ls-8e76f37c616293188a340c411bd1d333d45a8e59.cd6e4qi48ttv.eu-west-2.rds.amazonaws.com"/>
+        <env name="DB_HOST" value="jobber.mysql.database.azure.com"/>
         <env name="DB_PORT" value="3306"/>
-        <env name="DB_DATABASE" value="concentric_eco360_dev"/>
-        <env name="DB_USERNAME" value="eco360"/>
-        <env name="DB_PASSWORD" value="FJZhXi3E2ncxqayVw`SgrBuy%rR9"/>
+        <env name="DB_DATABASE" value="dft_staging_db"/>
+        <env name="DB_USERNAME" value="jobber"/>
+        <env name="DB_PASSWORD" value="738&amp;US772"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
